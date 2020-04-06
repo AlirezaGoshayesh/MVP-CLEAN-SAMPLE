@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.mvpsample.Injection;
 import com.example.mvpsample.data.source.DataSource;
 import com.example.mvpsample.data.source.RemoteDataSource;
 import com.example.mvpsample.data.source.Repository;
@@ -28,7 +29,7 @@ public class Presenter implements Contract.Presenter {
 
     private void init() {
         mUseCaseHandler = UseCaseHandler.getInstance();
-        mGet = new GetUsers(Repository.getInstance(RemoteDataSource.getInstance(view.getActivity())));
+        mGet = new GetUsers(Injection.provideRepo(view.getActivity()));
     }
 
     @Override
